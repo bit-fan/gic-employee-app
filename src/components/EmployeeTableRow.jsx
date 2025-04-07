@@ -2,6 +2,7 @@ import { Link } from 'react-router-dom';
 import { deleteEmployee, getEmployees } from '../utils/localStorageUtils';
 import { useEffect, useState } from 'react';
 import { TableRowProps } from '../config/const';
+import EmployeeTableAction from './EmployeeTableAction';
 
 export default function EmployeeTableRow({ header = false, data }) {
   return (
@@ -19,8 +20,7 @@ export default function EmployeeTableRow({ header = false, data }) {
           <th>Action</th>
         ) : (
           <td>
-            <Link to={`/employee/edit/${data.id}`}>Edit</Link>|
-            <a onClick={() => handleDelete(data.id)}>Delete</a>
+            <EmployeeTableAction data={data} />
           </td>
         )}
       </tr>

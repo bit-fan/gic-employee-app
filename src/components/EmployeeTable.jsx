@@ -19,9 +19,6 @@ export default function EmployeeTable() {
 
   return (
     <>
-      <Link to='/employee/add'>
-        <button>Add Employee</button>
-      </Link>
       <table>
         <thead>
           <EmployeeTableRow header={true} />
@@ -29,21 +26,11 @@ export default function EmployeeTable() {
         <tbody>
           {employees.map((emp) => (
             <EmployeeTableRow key={emp.id} data={emp} />
-            // <tr key={emp.id}>
-            //   <td>{emp.firstName}</td>
-            //   <td>{emp.lastName}</td>
-            //   <td>{emp.email}</td>
-            //   <td>{emp.phone}</td>
-            //   <td>{emp.gender}</td>
-            //   <td>{emp.dob}</td>
-            //   <td>{emp.joinedDate}</td>
-            //   <td>
-            //     <Link to={`/employee/edit/${emp.id}`}>Edit</Link> |
-            //     <button onClick={() => handleDelete(emp.id)}>Delete</button>
-            //   </td>
-            // </tr>
           ))}
         </tbody>
+        <tfoot>
+          <EmployeeTableRow header={true} />
+        </tfoot>
       </table>
     </>
   );

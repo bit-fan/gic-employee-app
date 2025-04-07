@@ -1,15 +1,19 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
+import { PageContainer, Title } from '../components/Fragments';
+import EmployeeTable from '../components/EmployeeTable';
 
 const EmployeeListPage = () => {
   const navigate = useNavigate();
   const dummyEmployees = []; // Replace with fetch data from API
 
   return (
-    <div>
-      <h1>Employee List</h1>
-      <button onClick={() => navigate('/employee/add')}>Add Employee</button>
-      {/* Table here */}
-    </div>
+    <PageContainer>
+      <Title>Employee List</Title>
+      <Link to='/employee/add'>
+        <button>Add Employee</button>
+      </Link>
+      <EmployeeTable />
+    </PageContainer>
   );
 };
 

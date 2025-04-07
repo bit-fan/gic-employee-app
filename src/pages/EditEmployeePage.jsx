@@ -2,8 +2,9 @@ import { useParams, useNavigate } from 'react-router-dom';
 import EmployeeForm from '../components/EmployeeForm';
 import { getEmployeeById, updateEmployee } from '../utils/localStorageUtils';
 import { useEffect, useState } from 'react';
+import { Page, PageContainer, Title } from '../components/Fragments';
 
-export default function EditEmployee() {
+export default function EditEmployeePage() {
   const { id } = useParams();
   const [employee, setEmployee] = useState(null);
   const navigate = useNavigate();
@@ -19,9 +20,11 @@ export default function EditEmployee() {
   };
 
   return (
-    <div>
-      <h2>Edit Employee</h2>
-      {employee && <EmployeeForm defaultValues={employee} onSubmit={handleUpdate} />}
-    </div>
+    <PageContainer>
+      <Title>Edit Employee</Title>
+      {employee && (
+        <EmployeeForm defaultValues={employee} onSubmit={handleUpdate} />
+      )}
+    </PageContainer>
   );
 }
