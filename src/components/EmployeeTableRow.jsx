@@ -15,16 +15,14 @@ export default function EmployeeTableRow({ header = false, data }) {
           );
         })}
 
-        <td>
-          {header ? (
-            <th>Action</th>
-          ) : (
-            <td>
-              <Link to={`/employee/edit/${data.id}`}>Edit</Link> |
-              <button onClick={() => handleDelete(data.id)}>Delete</button>
-            </td>
-          )}
-        </td>
+        {header ? (
+          <th>Action</th>
+        ) : (
+          <td>
+            <Link to={`/employee/edit/${data.id}`}>Edit</Link>|
+            <a onClick={() => handleDelete(data.id)}>Delete</a>
+          </td>
+        )}
       </tr>
     </>
   );
