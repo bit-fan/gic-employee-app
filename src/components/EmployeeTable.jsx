@@ -24,8 +24,8 @@ export default function EmployeeTable() {
           <EmployeeTableRow header={true} />
         </thead>
         <tbody>
-          {employees.map((emp) => (
-            <EmployeeTableRow key={emp.id} data={emp} />
+          {employees.map((emp, idx) => (
+            <EmployeeTableRow key={emp.id} data={emp} index={idx} />
           ))}
         </tbody>
         <tfoot>

@@ -1,6 +1,7 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Col, FormButton, FormLabel, Row } from './Fragments';
+import { Col, FormButton, FormError, FormLabel, Row } from './Fragments';
+import { FieldRules } from '../config/const';
 
 export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
   const {
@@ -23,24 +24,30 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
     navigate('/');
   };
 
+  console.log('errors', errors);
+
   return (
     <form onSubmit={handleSubmit(handleFormSubmit)} className='p-3'>
       <Row>
         <Col>
           <FormLabel>First Name</FormLabel>
           <input
-            {...register('firstName', { minLength: 6, maxLength: 10 })}
+            {...register('firstName', {
+              ...FieldRules.firstName,
+            })}
             placeholder='First Name'
           />
-          {errors.firstName && <p>First name must be 6-10 characters</p>}
+          <FormError data={errors.firstName} />
         </Col>
         <Col>
           <FormLabel>Last Name</FormLabel>
           <input
-            {...register('lastName', { minLength: 6, maxLength: 10 })}
+            {...register('lastName', {
+              ...FieldRules.lastName,
+            })}
             placeholder='Last Name'
           />
-          {errors.lastName && <p>Last name must be 6-10 characters</p>}
+          <FormError data={errors.lastName} />
         </Col>
       </Row>
       <Row>
@@ -48,22 +55,22 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
           <FormLabel>Email</FormLabel>
           <input
             {...register('email', {
-              pattern: /^[^\s@]+@[^\s@]+\.[^\s@]+$/,
+              ...FieldRules.email,
             })}
             placeholder='Email'
           />
-          {errors.email && <p>Invalid email format</p>}
+          <FormError data={errors.email} />
         </Col>
 
         <Col>
           <FormLabel>Phone</FormLabel>
           <input
             {...register('phone', {
-              pattern: /^(\+65)?[689]\d{7}$/,
+              ...FieldRules.phone,
             })}
             placeholder='Phone Number'
           />
-          {errors.phone && <p>Invalid SG phone number</p>}
+          <FormError data={errors.phone} />
         </Col>
       </Row>
       <Row>
@@ -71,30 +78,44 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
           <FormLabel>Gender</FormLabel>
           <div className='flex flex-row gap-4'>
             <label>
-              <input type='radio' value='M' {...register('gender')} />
+              <input
+                type='radio'
+                value='M'
+                {...register('gender', { ...FieldRules.gender })}
+              />
               Male
             </label>
             <label>
-              <input type='radio' value='F' {...register('gender')} />
+              <input
+                type='radio'
+                value='F'
+                {...register('gender', { ...FieldRules.gender })}
+              />
               Female
             </label>
           </div>
+          <FormError data={errors.gender} />
         </Col>
       </Row>
       <Row>
         <Col>
           <FormLabel>Date of Birth</FormLabel>
-          <input type='date' {...register('dob')} />
+          <input type='date' {...register('dob', { ...FieldRules.dob })} />
+          <FormError data={errors.dob} />
         </Col>
         <Col>
           <FormLabel>Joined Date</FormLabel>
           <input
             type='date'
             {...register('joinedDate', {
-              validate: (value) => new Date(value) > new Date(dob),
+              validate: (value) => {
+                if (new Date(value) < new Date(dob)) {
+                  return 'Joined Date must be after DOB';
+                }
+              },
             })}
           />
-          {errors.joinedDate && <p>Joined Date must be after DOB</p>}
+          <FormError data={errors.joinedDate} />
         </Col>
       </Row>{' '}
       <FormButton type='submit'>Submit</FormButton>

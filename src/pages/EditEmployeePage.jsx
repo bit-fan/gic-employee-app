@@ -2,7 +2,7 @@ import { useParams, useNavigate } from 'react-router-dom';
 import EmployeeForm from '../components/EmployeeForm';
 import { getEmployeeById, updateEmployee } from '../utils/localStorageUtils';
 import { useEffect, useState } from 'react';
-import { Page, PageContainer, Title } from '../components/Fragments';
+import { PageContainer, Title } from '../components/Fragments';
 
 export default function EditEmployeePage() {
   const { id } = useParams();

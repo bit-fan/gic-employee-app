@@ -21,6 +21,7 @@ a {
   text-decoration: inherit;
 }
 a:hover {
+  cursor: pointer;
   color: #535bf2;
 }
 
@@ -69,7 +70,9 @@ button:focus-visible {
   }
 }
 /* below are customised style */
-td {
+td,
+th {
   border: solid 1px #ccc;
   text-align: center;
+  padding: 0.25rem;
 }

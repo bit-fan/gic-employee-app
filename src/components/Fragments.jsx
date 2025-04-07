@@ -33,6 +33,10 @@ export const FormButton = ({ children, className, ...props }) => {
   );
 };
 
+export const FormError = ({ data, children }) => {
+  if (!data) return null;
+  return <p className='text-red-500 text-sm font-semibold'>{data.message}</p>;
+};
 export const Title = ({ children, className }) => {
   return <div className={`text-2xl font-bold ${className}`}>{children}</div>;
 };
