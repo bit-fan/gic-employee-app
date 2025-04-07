@@ -1,7 +1,8 @@
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Col, FormButton, FormError, FormLabel, Row } from './Fragments';
+import { Col, Row } from './Fragments';
 import { FieldRules } from '../config/const';
+import { FormLabel, FormButton, FormError, FormInput } from './FormFragment';
 
 export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
   const {
@@ -10,6 +11,8 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
     watch,
     formState: { errors, isDirty },
   } = useForm({
+    mode: 'onBlur',
+    reValidateMode: 'onBlur',
     defaultValues,
   });
   const navigate = useNavigate();
@@ -18,8 +21,6 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
   const joinedDate = watch('joinedDate');
 
   const handleFormSubmit = (data) => {
-    console.log('here', data);
-
     onSubmit(data);
     navigate('/');
   };
@@ -27,24 +28,27 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
   console.log('errors', errors);
 
   return (
-    <form onSubmit={handleSubmit(handleFormSubmit)} className='p-3'>
+    <form onSubmit={handleSubmit(handleFormSubmit)} className=''>
       <Row>
         <Col>
           <FormLabel>First Name</FormLabel>
-          <input
+          <FormInput
+            key={register}
             {...register('firstName', {
               ...FieldRules.firstName,
             })}
+            error={errors.firstName}
             placeholder='First Name'
           />
           <FormError data={errors.firstName} />
         </Col>
         <Col>
           <FormLabel>Last Name</FormLabel>
-          <input
+          <FormInput
             {...register('lastName', {
               ...FieldRules.lastName,
             })}
+            error={errors.lastName}
             placeholder='Last Name'
           />
           <FormError data={errors.lastName} />
@@ -53,10 +57,11 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
       <Row>
         <Col>
           <FormLabel>Email</FormLabel>
-          <input
+          <FormInput
             {...register('email', {
               ...FieldRules.email,
             })}
+            error={errors.email}
             placeholder='Email'
           />
           <FormError data={errors.email} />
@@ -64,10 +69,11 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
 
         <Col>
           <FormLabel>Phone</FormLabel>
-          <input
+          <FormInput
             {...register('phone', {
               ...FieldRules.phone,
             })}
+            error={errors.phone}
             placeholder='Phone Number'
           />
           <FormError data={errors.phone} />
@@ -83,7 +89,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
                 value='M'
                 {...register('gender', { ...FieldRules.gender })}
               />
-              Male
+              &nbsp;Male
             </label>
             <label>
               <input
@@ -91,7 +97,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
                 value='F'
                 {...register('gender', { ...FieldRules.gender })}
               />
-              Female
+              &nbsp;Female
             </label>
           </div>
           <FormError data={errors.gender} />
@@ -100,7 +106,11 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
       <Row>
         <Col>
           <FormLabel>Date of Birth</FormLabel>
-          <input type='date' {...register('dob', { ...FieldRules.dob })} />
+          <input
+            type='date'
+            {...register('dob', { ...FieldRules.dob })}
+            error={errors.dob}
+          />
           <FormError data={errors.dob} />
         </Col>
         <Col>
@@ -110,10 +120,11 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
             {...register('joinedDate', {
               validate: (value) => {
                 if (new Date(value) < new Date(dob)) {
-                  return 'Joined Date must be after DOB';
+                  return 'Joined Date must be after Date of Birth';
                 }
               },
             })}
+            error={errors.joinedDate}
           />
           <FormError data={errors.joinedDate} />
         </Col>
