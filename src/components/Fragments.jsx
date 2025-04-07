@@ -14,7 +14,7 @@ export const Title = ({ children, className }) => {
 
 export const PageContainer = ({ children }) => {
   return (
-    <div className='flex flex-col min-h-screen bg-gray-100 w-full p-4'>
+    <div className='flex flex-col min-h-screen bg-gray-100 w-full p-4 gap-2'>
       {children}
     </div>
   );

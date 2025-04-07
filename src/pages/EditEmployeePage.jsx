@@ -1,29 +1,30 @@
 import { useParams, useNavigate } from 'react-router-dom';
 import EmployeeForm from '../components/EmployeeForm';
-import { getEmployeeById, updateEmployee } from '../utils/localStorageUtils';
-import { useEffect, useState } from 'react';
 import { PageContainer, Title } from '../components/Fragments';
+import { useDispatch, useSelector } from 'react-redux';
+import { updateEmployee } from '../features/employees/employeesSlice';
 
 export default function EditEmployeePage() {
   const { id } = useParams();
-  const [employee, setEmployee] = useState(null);
   const navigate = useNavigate();
-
-  useEffect(() => {
-    const data = getEmployeeById(id);
-    if (!data) navigate('/');
-    else setEmployee(data);
-  }, [id]);
+  const dispatch = useDispatch();
+  const employeeData = useSelector((state) =>
+    state.employees.list.find((emp) => emp.id === id)
+  );
+  // if (!data) navigate('/');
 
   const handleUpdate = (data) => {
-    updateEmployee(id, data);
+    dispatch(updateEmployee({ id, updatedData: data }));
   };
 
+  if (id && !employeeData) {
+    return <div>Loading...</div>;
+  }
   return (
     <PageContainer>
       <Title>Edit Employee</Title>
-      {employee && (
-        <EmployeeForm defaultValues={employee} onSubmit={handleUpdate} />
+      {employeeData && (
+        <EmployeeForm defaultValues={employeeData} onSubmit={handleUpdate} />
       )}
     </PageContainer>
   );

@@ -1,18 +1,19 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { PageContainer, Title } from '../components/Fragments';
 import EmployeeTable from '../components/EmployeeTable';
+import { useSelector } from 'react-redux';
+import { FormButton } from '../components/FormFragment';
 
 const EmployeeListPage = () => {
-  const navigate = useNavigate();
-  const dummyEmployees = []; // Replace with fetch data from API
+  const employees = useSelector((state) => state.employees.list);
 
   return (
     <PageContainer>
       <Title>Employee List</Title>
+      <EmployeeTable employees={employees} />
       <Link to='/employee/add'>
-        <button>Add Employee</button>
+        <FormButton>Add Employee</FormButton>
       </Link>
-      <EmployeeTable />
     </PageContainer>
   );
 };

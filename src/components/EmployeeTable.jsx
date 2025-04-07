@@ -1,22 +1,7 @@
-import { Link } from 'react-router-dom';
-import { deleteEmployee, getEmployees } from '../utils/localStorageUtils';
-import { useEffect, useState } from 'react';
 import EmployeeTableRow from './EmployeeTableRow';
+import { useSelector } from 'react-redux';
 
-export default function EmployeeTable() {
-  const [employees, setEmployees] = useState([]);
-
-  useEffect(() => {
-    setEmployees(getEmployees());
-  }, []);
-
-  const handleDelete = (id) => {
-    if (confirm('Are you sure you want to delete this employee?')) {
-      deleteEmployee(id);
-      setEmployees(getEmployees());
-    }
-  };
-
+export default function EmployeeTable({ employees }) {
   return (
     <>
       <table>

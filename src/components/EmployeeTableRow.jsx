@@ -1,6 +1,3 @@
-import { Link } from 'react-router-dom';
-import { deleteEmployee, getEmployees } from '../utils/localStorageUtils';
-import { useEffect, useState } from 'react';
 import { TableRowProps } from '../config/const';
 import EmployeeTableAction from './EmployeeTableAction';
 

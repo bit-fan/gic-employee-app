@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { Col, Row } from './Fragments';
 import { FieldRules } from '../config/const';
 import { FormLabel, FormButton, FormError, FormInput } from './FormFragment';
+import { useNavigationConfirmation } from '../hooks/useNavigationConfirmation';
 
 export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
   const {
@@ -15,6 +16,10 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
     reValidateMode: 'onBlur',
     defaultValues,
   });
+  useNavigationConfirmation(
+    isDirty,
+    'Are yodddu sure you want to leave? Unsaved changes will be lost.'
+  );
   const navigate = useNavigate();
 
   const dob = watch('dob');
@@ -83,7 +88,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
         <Col>
           <FormLabel>Gender</FormLabel>
           <div className='flex flex-row gap-4'>
-            <label>
+            <label className='flex items-center justify-center'>
               <input
                 type='radio'
                 value='M'
@@ -91,7 +96,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
               />
               &nbsp;Male
             </label>
-            <label>
+            <label className='flex items-center justify-center'>
               <input
                 type='radio'
                 value='F'
@@ -106,7 +111,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
       <Row>
         <Col>
           <FormLabel>Date of Birth</FormLabel>
-          <input
+          <FormInput
             type='date'
             {...register('dob', { ...FieldRules.dob })}
             error={errors.dob}
@@ -115,7 +120,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
         </Col>
         <Col>
           <FormLabel>Joined Date</FormLabel>
-          <input
+          <FormInput
             type='date'
             {...register('joinedDate', {
               validate: (value) => {
