@@ -1,7 +1,6 @@
 import EmployeeTableRow from './EmployeeTableRow';
-import { useSelector } from 'react-redux';
 
-export default function EmployeeTable({ employees }) {
+export default function EmployeeTable({ employees = [] }) {
   return (
     <>
       <table>
@@ -9,7 +8,7 @@ export default function EmployeeTable({ employees }) {
           <EmployeeTableRow header={true} />
         </thead>
         <tbody>
-          {employees.map((emp, idx) => (
+          {employees?.map((emp, idx) => (
             <EmployeeTableRow key={emp.id} data={emp} index={idx} />
           ))}
         </tbody>

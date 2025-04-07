@@ -1,4 +1,4 @@
-import { useParams, useNavigate } from 'react-router-dom';
+import { useParams } from 'react-router-dom';
 import EmployeeForm from '../components/EmployeeForm';
 import { PageContainer, Title } from '../components/Fragments';
 import { useDispatch, useSelector } from 'react-redux';
@@ -6,7 +6,6 @@ import { updateEmployee } from '../features/employees/employeesSlice';
 
 export default function EditEmployeePage() {
   const { id } = useParams();
-  const navigate = useNavigate();
   const dispatch = useDispatch();
   const employeeData = useSelector((state) =>
     state.employees.list.find((emp) => emp.id === id)

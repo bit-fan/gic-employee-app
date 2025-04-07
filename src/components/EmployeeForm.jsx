@@ -23,7 +23,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
   const navigate = useNavigate();
 
   const dob = watch('dob');
-  const joinedDate = watch('joinedDate');
+  // const joinedDate = watch('joinedDate');
 
   const handleFormSubmit = (data) => {
     onSubmit(data);

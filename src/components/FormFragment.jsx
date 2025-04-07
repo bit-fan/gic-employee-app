@@ -27,7 +27,7 @@ export const FormButton = ({ children, className, ...props }) => {
   );
 };
 
-export const FormError = ({ data, children }) => {
+export const FormError = ({ data }) => {
   if (!data) return null;
   return <p className='text-red-500 text-sm font-semibold'>{data.message}</p>;
 };
