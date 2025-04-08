@@ -1,3 +1,4 @@
+import React from 'react';
 export const FormLabel = ({ children }) => {
   return (
     <label className='block text-sm font-semibold text-gray-700'>

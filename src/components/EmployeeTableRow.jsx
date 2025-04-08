@@ -1,3 +1,4 @@
+import React from 'react';
 import { TableRowProps } from '../config/const';
 import EmployeeTableAction from './EmployeeTableAction';
 

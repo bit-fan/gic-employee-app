@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import AppRouter from './routes/AppRouter';
 import { useEffect } from 'react';

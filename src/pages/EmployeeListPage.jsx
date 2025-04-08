@@ -1,3 +1,4 @@
+import React from 'react';
 import { Link } from 'react-router-dom';
 import { PageContainer, Title } from '../components/Fragments';
 import EmployeeTable from '../components/EmployeeTable';

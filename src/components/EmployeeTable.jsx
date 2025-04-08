@@ -1,3 +1,4 @@
+import React from 'react';
 import EmployeeTableRow from './EmployeeTableRow';
 
 export default function EmployeeTable({ employees = [] }) {
@@ -12,9 +13,9 @@ export default function EmployeeTable({ employees = [] }) {
             <EmployeeTableRow key={emp.id} data={emp} index={idx} />
           ))}
         </tbody>
-        <tfoot>
+        {/* <tfoot>
           <EmployeeTableRow header={true} />
-        </tfoot>
+        </tfoot> */}
       </table>
     </>
   );

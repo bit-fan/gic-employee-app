@@ -1,3 +1,4 @@
+import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
 import { Col, Row } from './Fragments';
@@ -20,14 +21,14 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
     isDirty,
     'Are yodddu sure you want to leave? Unsaved changes will be lost.'
   );
-  const navigate = useNavigate();
+  //   const navigate = useNavigate();
 
   const dob = watch('dob');
   // const joinedDate = watch('joinedDate');
 
   const handleFormSubmit = (data) => {
     onSubmit(data);
-    navigate('/');
+    // navigate('/');
   };
 
   console.log('errors', errors);
@@ -44,6 +45,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
             })}
             error={errors.firstName}
             placeholder='First Name'
+            data-testid='first-name'
           />
           <FormError data={errors.firstName} />
         </Col>
@@ -55,6 +57,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
             })}
             error={errors.lastName}
             placeholder='Last Name'
+            data-testid='last-name'
           />
           <FormError data={errors.lastName} />
         </Col>
@@ -68,6 +71,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
             })}
             error={errors.email}
             placeholder='Email'
+            data-testid='email'
           />
           <FormError data={errors.email} />
         </Col>
@@ -80,6 +84,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
             })}
             error={errors.phone}
             placeholder='Phone Number'
+            data-testid='phone'
           />
           <FormError data={errors.phone} />
         </Col>
@@ -93,6 +98,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
                 type='radio'
                 value='M'
                 {...register('gender', { ...FieldRules.gender })}
+                data-testid='gender-male'
               />
               &nbsp;Male
             </label>
@@ -101,6 +107,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
                 type='radio'
                 value='F'
                 {...register('gender', { ...FieldRules.gender })}
+                data-testid='gender-female'
               />
               &nbsp;Female
             </label>
@@ -115,6 +122,7 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
             type='date'
             {...register('dob', { ...FieldRules.dob })}
             error={errors.dob}
+            data-testid='dob'
           />
           <FormError data={errors.dob} />
         </Col>
@@ -130,11 +138,14 @@ export default function EmployeeForm({ defaultValues = {}, onSubmit }) {
               },
             })}
             error={errors.joinedDate}
+            data-testid='joined-date'
           />
           <FormError data={errors.joinedDate} />
         </Col>
-      </Row>{' '}
-      <FormButton type='submit'>Submit</FormButton>
+      </Row>
+      <FormButton type='submit' data-testid='submit-button'>
+        Submit
+      </FormButton>
     </form>
   );
 }

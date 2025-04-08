@@ -1,3 +1,4 @@
+import React from 'react';
 import { Routes, Route, Navigate } from 'react-router-dom';
 import EmployeeListPage from '../pages/EmployeeListPage';
 import AddEmployeePage from '../pages/AddEmployeePage';

@@ -1,3 +1,4 @@
+import React from 'react';
 import { useDispatch } from 'react-redux';
 import EmployeeForm from '../components/EmployeeForm';
 import { PageContainer, Title } from '../components/Fragments';
@@ -8,7 +9,6 @@ export default function AddEmployeePage() {
   const dispatch = useDispatch();
   const handleAdd = (data) => {
     console.log('data', data);
-
     dispatch(addEmployee({ ...data, id: uuidv4() }));
   };
 

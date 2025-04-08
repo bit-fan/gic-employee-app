@@ -1,3 +1,4 @@
+import React from 'react';
 export const Row = ({ children }) => {
   return <div className='flex w-full flex-row m-2'>{children}</div>;
 };
