@@ -3,6 +3,7 @@ import EmployeeForm from '../components/EmployeeForm';
 import { PageContainer, Title } from '../components/Fragments';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateEmployee } from '../features/employees/employeesSlice';
+import ErrorBoundary from '../components/common/ErrorBoundary';
 
 export default function EditEmployeePage() {
   const { id } = useParams();
@@ -22,9 +23,11 @@ export default function EditEmployeePage() {
   return (
     <PageContainer>
       <Title>Edit Employee</Title>
-      {employeeData && (
-        <EmployeeForm defaultValues={employeeData} onSubmit={handleUpdate} />
-      )}
+      <ErrorBoundary fallback={<p>Something went wrong</p>}>
+        {employeeData && (
+          <EmployeeForm defaultValues={employeeData} onSubmit={handleUpdate} />
+        )}
+      </ErrorBoundary>
     </PageContainer>
   );
 }

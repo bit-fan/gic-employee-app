@@ -4,6 +4,7 @@ import EmployeeForm from '../components/EmployeeForm';
 import { PageContainer, Title } from '../components/Fragments';
 import { v4 as uuidv4 } from 'uuid';
 import { addEmployee } from '../features/employees/employeesSlice';
+import ErrorBoundary from '../components/common/ErrorBoundary';
 
 export default function AddEmployeePage() {
   const dispatch = useDispatch();
@@ -15,7 +16,9 @@ export default function AddEmployeePage() {
   return (
     <PageContainer>
       <Title>Add Employee</Title>
-      <EmployeeForm onSubmit={handleAdd} />
+      <ErrorBoundary fallback={<p>Something went wrong</p>}>
+        <EmployeeForm onSubmit={handleAdd} />
+      </ErrorBoundary>
     </PageContainer>
   );
 }
