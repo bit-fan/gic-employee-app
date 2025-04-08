@@ -4,20 +4,24 @@ import { PageContainer, Title } from '../components/Fragments';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateEmployee } from '../features/employees/employeesSlice';
 import ErrorBoundary from '../components/common/ErrorBoundary';
+import EmployeeErrorModal from '../components/modal/EmployeeErrorModal';
 
 export default function EditEmployeePage() {
   const { id } = useParams();
+
   const dispatch = useDispatch();
   const employeeData = useSelector((state) =>
-    state.employees.list.find((emp) => emp.id === id)
+    state.employees.list.find((emp) => emp.id == id)
   );
+  const status = useSelector((state) => state.employees.status);
+
   // if (!data) navigate('/');
 
   const handleUpdate = (data) => {
     dispatch(updateEmployee({ id, updatedData: data }));
   };
 
-  if (id && !employeeData) {
+  if (id && status === 'loading') {
     return <div>Loading...</div>;
   }
   return (
@@ -28,6 +32,7 @@ export default function EditEmployeePage() {
           <EmployeeForm defaultValues={employeeData} onSubmit={handleUpdate} />
         )}
       </ErrorBoundary>
+      <EmployeeErrorModal />
     </PageContainer>
   );
 }

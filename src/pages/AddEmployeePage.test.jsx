@@ -18,9 +18,9 @@ describe('AddEmployeePage', () => {
     expect(screen.getByText(/add employee/i)).toBeInTheDocument();
   });
 
-  it('submits the form with valid data', async () => {
+  it('dispatches addEmployee action with correct data', async () => {
     const mockDispatch = vi.fn();
-    store.dispatch = mockDispatch; // Mock the dispatch function
+    store.dispatch = mockDispatch;
 
     render(
       <Provider store={store}>
@@ -30,7 +30,7 @@ describe('AddEmployeePage', () => {
       </Provider>
     );
 
-    // Fill out the form using getByTestId
+    // Fill out the form
     fireEvent.change(screen.getByTestId('first-name'), {
       target: { value: 'JohnJohn' },
     });
@@ -43,13 +43,13 @@ describe('AddEmployeePage', () => {
     fireEvent.change(screen.getByTestId('phone'), {
       target: { value: '98765432' },
     });
-    fireEvent.click(screen.getByTestId('gender-female'));
     fireEvent.change(screen.getByTestId('dob'), {
       target: { value: '1990-01-01' },
     });
     fireEvent.change(screen.getByTestId('joined-date'), {
       target: { value: '2020-01-01' },
     });
+    fireEvent.click(screen.getByTestId('gender-female'));
 
     // Submit the form
     fireEvent.click(screen.getByTestId('submit-button'));
@@ -62,7 +62,7 @@ describe('AddEmployeePage', () => {
     // Assert the dispatched action
     expect(mockDispatch).toHaveBeenCalledWith(
       expect.objectContaining({
-        type: expect.any(String), // Ensure an action is dispatched
+        type: expect.any(String),
         payload: expect.objectContaining({
           firstName: 'JohnJohn',
           lastName: 'DoeDoe',

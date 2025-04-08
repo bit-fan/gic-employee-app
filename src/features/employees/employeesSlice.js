@@ -3,6 +3,8 @@ import { getEmployees, saveEmployees } from '../../utils/employees';
 
 const initialState = {
   list: [],
+  status: '',
+  showError: false
 };
 
 export const loadEmployees = createAsyncThunk(
@@ -32,6 +34,9 @@ const employeesSlice = createSlice({
       state.list = state.list.filter(emp => emp.id !== action.payload);
       saveEmployees(state.list);
     },
+    setShowError: (state, action) => {
+      state.showError = action.payload;
+    },
     syncEmployeesFromStorage: (state) => {
       state.list = getEmployees();
     }
@@ -44,10 +49,13 @@ const employeesSlice = createSlice({
       .addCase(loadEmployees.fulfilled, (state, action) => {
         state.status = 'succeeded';
         state.list = action.payload;
+        state.showError = false;
+        state.error = null
       })
       .addCase(loadEmployees.rejected, (state, action) => {
         state.status = 'failed';
         state.error = action.error.message;
+        state.showError = true;
       });
   },
 });
@@ -56,6 +64,7 @@ export const {
   addEmployee,
   updateEmployee,
   deleteEmployee,
+  setShowError,
   syncEmployeesFromStorage
 } = employeesSlice.actions;
 

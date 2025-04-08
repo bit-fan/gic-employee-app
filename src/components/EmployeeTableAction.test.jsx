@@ -1,5 +1,5 @@
 import React from 'react';
-import { render, screen, fireEvent } from '@testing-library/react';
+import { render, screen, fireEvent, waitFor } from '@testing-library/react';
 import { describe, it, expect, vi } from 'vitest';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
@@ -20,7 +20,7 @@ describe('EmployeeTableAction', () => {
     expect(screen.getByText(/delete/i)).toBeInTheDocument();
   });
 
-  it('calls delete action on confirmation', () => {
+  it('calls delete action on confirmation', async () => {
     const mockData = { id: 1 };
     const mockDispatch = vi.fn();
     store.dispatch = mockDispatch;
@@ -35,6 +35,10 @@ describe('EmployeeTableAction', () => {
 
     vi.spyOn(window, 'confirm').mockReturnValueOnce(true);
     fireEvent.click(screen.getByText(/delete/i));
+    await waitFor(() => {
+      expect(screen.getByTestId('confirm-button')).toBeInTheDocument();
+    });
+    fireEvent.click(screen.getByTestId('confirm-button'));
     expect(mockDispatch).toHaveBeenCalled();
   });
 });
