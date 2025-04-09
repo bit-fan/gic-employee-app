@@ -6,7 +6,8 @@ import EditEmployeePage from '../pages/EditEmployeePage';
 
 const AppRouter = () => (
   <Routes>
-    <Route path='/' element={<EmployeeListPage />} />
+    <Route path='/' element={<Navigate to='/employee/list' />} />
+    <Route path='/employee/list' element={<EmployeeListPage />} />
     <Route path='/employee/add' element={<AddEmployeePage />} />
     <Route path='/employee/edit/:id' element={<EditEmployeePage />} />
     <Route path='*' element={<Navigate to='/' />} />

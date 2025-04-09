@@ -1,5 +1,5 @@
 import React from 'react';
-import { TableRowProps } from '../config/const';
+import { TableRowProps } from '../../config/const';
 import EmployeeTableAction from './EmployeeTableAction';
 
 export default function EmployeeTableRow({ header = false, data, index }) {

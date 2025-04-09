@@ -1,5 +1,5 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import EmployeeForm from '../components/EmployeeForm';
+import EmployeeForm from '../components/employee/EmployeeForm';
 import { PageContainer, Title } from '../components/Fragments';
 import { useDispatch, useSelector } from 'react-redux';
 import { updateEmployee } from '../features/employees/employeesSlice';

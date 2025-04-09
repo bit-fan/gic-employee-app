@@ -2,7 +2,7 @@ import React from 'react';
 import { render, screen } from '@testing-library/react';
 import { describe, it, expect } from 'vitest';
 import EmployeeTable from './EmployeeTable';
-import { store } from '../app/store';
+import { store } from '../../app/store';
 import { Provider } from 'react-redux';
 import { BrowserRouter } from 'react-router-dom';
 

@@ -1,6 +1,6 @@
 import React from 'react';
 import { useDispatch } from 'react-redux';
-import EmployeeForm from '../components/EmployeeForm';
+import EmployeeForm from '../components/employee/EmployeeForm';
 import { PageContainer, Title } from '../components/Fragments';
 import { v4 as uuidv4 } from 'uuid';
 import { addEmployee } from '../features/employees/employeesSlice';

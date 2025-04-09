@@ -1,3 +1,4 @@
+// this will define the table col order
 export const TableRowProps = [
   { title: 'First Name', field: 'firstName', type: 'numeric' },
   { title: 'Last Name', field: 'lastName', type: 'numeric' },

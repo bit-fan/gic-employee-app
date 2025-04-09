@@ -1,11 +1,11 @@
 import React from 'react';
 import { useForm } from 'react-hook-form';
 import { useNavigate } from 'react-router-dom';
-import { Col, Row } from './Fragments';
-import { FieldRules } from '../config/const';
-import { FormLabel, FormButton, FormError, FormInput } from './FormFragment';
+import { Col, Row } from '../Fragments';
+import { FieldRules } from '../../config/const';
+import { FormLabel, FormButton, FormError, FormInput } from '../FormFragment';
 // import { useNavigationConfirmation } from '../hooks/useNavigationConfirmation';
-import LeaveWarningModal from './modal/LeaveWarningModal';
+import LeaveWarningModal from '../modal/LeaveWarningModal';
 // import { usePrompt } from '../hooks/usePrompt';
 
 export default function EmployeeForm({ defaultValues = {}, onSubmit }) {

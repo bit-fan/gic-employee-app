@@ -1,8 +1,8 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import { useDispatch } from 'react-redux';
-import { deleteEmployee } from '../features/employees/employeesSlice';
-import ConfirmModal from './modal/ConfirmModal';
+import { deleteEmployee } from '../../features/employees/employeesSlice';
+import ConfirmModal from '../modal/ConfirmModal';
 
 export default function EmployeeTableAction({ data }) {
   const dispatch = useDispatch();
