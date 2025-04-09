@@ -22,9 +22,13 @@ export default function EmployeeTableAction({ data }) {
           setShowConfirmModal(false);
         }}
       >
-        <h2 className='text-xl font-bold mb-4'>
-          Are you sure you want to delete {data.firstName} {data.lastName}?
-        </h2>
+        <h3 className='text-xl mb-4'>
+          Are you sure you want to delete <br />
+          <b>
+            {data.firstName} {data.lastName}
+          </b>
+          ?
+        </h3>
       </ConfirmModal>
     </>
   );

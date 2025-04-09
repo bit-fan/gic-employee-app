@@ -1,4 +1,4 @@
-import { useParams } from 'react-router-dom';
+import { useNavigate, useParams } from 'react-router-dom';
 import EmployeeForm from '../components/EmployeeForm';
 import { PageContainer, Title } from '../components/Fragments';
 import { useDispatch, useSelector } from 'react-redux';
@@ -8,7 +8,7 @@ import EmployeeErrorModal from '../components/modal/EmployeeErrorModal';
 
 export default function EditEmployeePage() {
   const { id } = useParams();
-
+  const navigate = useNavigate();
   const dispatch = useDispatch();
   const employeeData = useSelector((state) =>
     state.employees.list.find((emp) => emp.id == id)
@@ -19,6 +19,7 @@ export default function EditEmployeePage() {
 
   const handleUpdate = (data) => {
     dispatch(updateEmployee({ id, updatedData: data }));
+    navigate('/');
   };
 
   if (id && status === 'loading') {

@@ -2,7 +2,7 @@ import { createPortal } from 'react-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { setShowError } from '../../features/employees/employeesSlice';
 
-export default function EmployeeErrorModal({}) {
+export default function EmployeeErrorModal() {
   const dispatch = useDispatch();
   const error = useSelector((state) => state.employees.error);
   const showError = useSelector((state) => state.employees.showError);
