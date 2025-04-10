@@ -15,7 +15,7 @@ This application is designed to manage employee records, allowing users to view,
 Clone the repository:
 
 ```
-git clone https://github.com/your-repo/employee-management-app.git
+git clone https://github.com/bit-fan/gic-employee-app.git
 cd employee-management-app
 ```
 
